@@ -37,11 +37,11 @@ TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFp
   ct[[4]] <- as.character(ct[[4]])
   
   # plot figure
-  ct1 <- ct[(ct$category=="mRNA")&(ct$count==1),]
-  ct2 <- ct[(ct$category=="lncRNA")&(ct$count==1),]
+  ct1 <- ct[(ct$category=="mRNA")&(ct$count>0),]
+  ct2 <- ct[(ct$category=="lncRNA")&(ct$count>0),]
   
   # save(ct1,ct2,file="TravisPlot.RData")
-  p1 <- ggplot(ct1, aes(x=pos, group=Feature)) + 
+  p1 <- ggplot(ct1, aes(x=pos, group=Feature, weight=count/sum(count))) + 
     ggtitle("Distribution on mRNA") +
     theme(axis.ticks = element_blank(), axis.text.x = element_blank()) + xlab("") + ylab("Frequency") +
     annotate("pointrange", x = 1/3, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
@@ -56,7 +56,7 @@ TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFp
     annotate("text", x = 1.5/3, y = -0.3, label = "CDS") +
     annotate("text", x = 2.5/3, y = -0.3, label = "3'UTR")
   
-  p2 <- ggplot(ct2, aes(x=pos, group=Feature)) + 
+  p2 <- ggplot(ct2, aes(x=pos, group=Feature, weight=count/sum(count))) + 
     ggtitle("Distribution on lncRNA") +
     theme(axis.ticks = element_blank(), axis.text.x = element_blank()) + xlab("") + ylab("Frequency") +
     annotate("pointrange", x = 0/3, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
