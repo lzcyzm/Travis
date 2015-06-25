@@ -22,11 +22,11 @@ TravisPlot <- function(peak,TravisCoords=NA,txdb=NA,genome=NA,saveToPDFprefix=NA
   }
   
   # import bed12 file
+  noGroup <- length(peak)
   group_names <- names(peak)
   if (is.null(group_names)) {
     group_names <- paste("item",1:noGroup)
   }
-  noGroup <- length(peak)
   for (i in 1:noGroup) {
     temp = .countTravisDensity(peak[[i]],TravisCoords)
     temp = cbind(temp,Feature=group_names[i])
