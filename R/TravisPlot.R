@@ -38,7 +38,7 @@ TravisPlot <- function(peak,TravisCoords=NA,txdb=NA,genome=NA,saveToPDFprefix=NA
   # plot figure
   ct1 <- ct[ct$category=="mRNA",]
   ct2 <- ct[ct$category=="lncRNA",]
-  
+  save(ct1,ct2,file="TravisPlot.RData")
   p1 <- ggplot(ct1, aes(x=pos, y=Freq, group=Feature)) + 
     ggtitle("Distribution on mRNA") +
     theme(axis.ticks = element_blank(), axis.text.x = element_blank()) + xlab("") + ylab("Frequency") +
