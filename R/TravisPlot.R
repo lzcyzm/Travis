@@ -88,7 +88,7 @@ TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFp
   
   # count overlaps
   n <- countOverlaps(TravisCoords,peak)
-  q <- data.frame(mcols(TravisCoords),count=n/length(peak))
+  q <- data.frame(mcols(TravisCoords),count=n/sum(n))
   return(q)
   
 }
