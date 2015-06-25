@@ -15,7 +15,7 @@ TravisPlot(peak, TravisCoords = NA, txdb = NA, genome = NA, saveToPDFprefix = NA
   \item{peak}{
 %%     ~~Describe \code{peak} here~~
 }
-  \item{TravisCoords}{
+  \item{TravisCoordsFromTxDb}{
 %%     ~~Describe \code{TravisCoords} here~~
 }
   \item{txdb}{
