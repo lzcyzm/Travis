@@ -6,6 +6,7 @@ Date: 2015-06-24
 Author: Jia Meng
 Maintainer: Jia Meng <jia.meng@xjtlu.edu.cn>
 Description: Transcriptomic View of Genomic Features
-License: GPL 2.0
-Depends: GenomicFeatures, rtracklayer, ggplot2, GenomicRanges
-Packaged: 2015-06-24 07:49:46 UTC; bioinfo
+License: GPL-2
+Depends: Rsamtools, GenomicFeatures (>= 1.14.5), rtracklayer, GenomicAlignments, IRanges, GenomicRanges, ggplot2
+Imports: Rsamtools, GenomicFeatures (>= 1.14.5), rtracklayer, GenomicAlignments, IRanges, GenomicRanges, ggplot2
+biocViews: Sequencing, HighThroughputSequencing, Methylseq, RNAseq
