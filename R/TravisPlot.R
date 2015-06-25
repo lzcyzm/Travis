@@ -3,11 +3,11 @@
 TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFprefix=NA){
   
   # make sure the travis coordinates are available
-  if (is.na(TravisCoords)&is.na(txdb)&is.na(genome)) {
+  if (is.na(TravisCoordsFromTxDb)&is.na(txdb)&is.na(genome)) {
     stop("Most provide one of the three: TravisCoords, txdb or genome")
   } 
   
-  if ( suppressWarnings(is.na(TravisCoords)) ) {
+  if ( suppressWarnings(is.na(TravisCoordsFromTxDb)) ) {
     if (suppressWarnings(is.na(txdb))) {
       print("Downloading Transcriptome Information from UCSC ...")
       txdb <- suppressMessages(makeTxDbFromUCSC(genome=genome))
