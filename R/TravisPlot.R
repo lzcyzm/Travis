@@ -41,7 +41,7 @@ TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFp
   ct2 <- ct[(ct$category=="lncRNA")&(ct$count>0),]
   
   # save(ct1,ct2,file="TravisPlot.RData")
-  p1 <- ggplot(ct1, aes(x=pos, group=Feature, weight=count/sum(count))) + 
+  p1 <- ggplot(ct1, aes(x=pos, group=Feature, weight=count)) + 
     ggtitle("Distribution on mRNA") +
     theme(axis.ticks = element_blank(), axis.text.x = element_blank()) + xlab("") + ylab("Frequency") +
     annotate("pointrange", x = 1/3, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
@@ -56,7 +56,7 @@ TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFp
     annotate("text", x = 1.5/3, y = -0.3, label = "CDS") +
     annotate("text", x = 2.5/3, y = -0.3, label = "3'UTR")
   
-  p2 <- ggplot(ct2, aes(x=pos, group=Feature, weight=count/sum(count))) + 
+  p2 <- ggplot(ct2, aes(x=pos, group=Feature, weight=count)) + 
     ggtitle("Distribution on lncRNA") +
     theme(axis.ticks = element_blank(), axis.text.x = element_blank()) + xlab("") + ylab("Frequency") +
     annotate("pointrange", x = 0/3, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
@@ -88,7 +88,14 @@ TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFp
   
   # count overlaps
   n <- countOverlaps(TravisCoords,peak)
-  q <- data.frame(mcols(TravisCoords),count=n/sum(n))
+  q <- data.frame(mcols(TravisCoords),count=n)
+  
+  q1 <- q[(q$category=="mRNA")&(q$count>0),]
+  q1$count <- q1$count/sum(q1$count)
+  q2 <- q[(q$category=="lncRNA")&(q$count>0),]
+  q2$count <- q2$count/sum(q2$count)
+  
+  q <- rbind(q1,q2)
   return(q)
   
 }
