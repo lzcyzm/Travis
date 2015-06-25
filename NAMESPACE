@@ -1,0 +1,5 @@
+exportPattern("^[[:alpha:]]+")
+export(BED12toGRangesList)
+export(makeTravisCoordsFromGRangesList)
+export(makeTravisCoordsFromTxDb)
+export(TravisPlot)
