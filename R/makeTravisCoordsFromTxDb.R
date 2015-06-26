@@ -27,11 +27,11 @@ makeTravisCoordsFromTxDb <- function(txdb,
   
   # group together
   mcols(utr3_bin) <- data.frame(mcols(utr3_bin),comp="UTR3",category="mRNA")
-  mcols(utr3_bin)$pos <- mcols(utr3_bin)$pos/3 + 2/3
+  mcols(utr3_bin)$pos <- mcols(utr3_bin)$pos + 2
   mcols(utr5_bin) <- data.frame(mcols(utr5_bin),comp="UTR5",category="mRNA")
-  mcols(utr5_bin)$pos <- mcols(utr5_bin)$pos/3
+  mcols(utr5_bin)$pos <- mcols(utr5_bin)$pos
   mcols(cds_bin) <- data.frame(mcols(cds_bin),comp="CDS",category="mRNA")
-  mcols(cds_bin)$pos <- mcols(cds_bin)$pos/3 + 1/3
+  mcols(cds_bin)$pos <- mcols(cds_bin)$pos + 1
   mcols(ncRNA_bin) <- data.frame(mcols(ncRNA_bin),comp="lncRNA",category="lncRNA")
   TravisCoords <- suppressWarnings(c(utr5_bin, cds_bin, utr3_bin, ncRNA_bin))
 
