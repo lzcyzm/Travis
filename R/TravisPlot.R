@@ -44,17 +44,17 @@ TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFp
   p1 <- ggplot(ct1, aes(x=pos, group=Feature, weight=count/sum(count))) + 
     ggtitle("Distribution on mRNA") +
     theme(axis.ticks = element_blank(), axis.text.x = element_blank()) + xlab("") + ylab("Frequency") +
-    annotate("pointrange", x = 1, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
-    annotate("pointrange", x = 2, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
-    annotate("pointrange", x = 0, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
-    annotate("pointrange", x = 3, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
-    annotate("rect", xmin = 0, xmax = 1, ymin = -0.4, ymax = -0.2, alpha = .2, fill = "blue") +
-    annotate("rect", xmin = 1, xmax = 2, ymin = -0.4, ymax = -0.2, alpha = .2, fill = "green") +
-    annotate("rect", xmin = 2, xmax = 3, ymin = -0.4, ymax = -0.2, alpha = .2, fill = "red") +
+    annotate("pointrange", x = 1/3, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
+    annotate("pointrange", x = 2/3, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
+    annotate("pointrange", x = 0/3, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
+    annotate("pointrange", x = 3/3, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
+    annotate("rect", xmin = 0/3, xmax = 1/3, ymin = -0.4, ymax = -0.2, alpha = .2, fill = "blue") +
+    annotate("rect", xmin = 1/3, xmax = 2/3, ymin = -0.4, ymax = -0.2, alpha = .2, fill = "green") +
+    annotate("rect", xmin = 2/3, xmax = 3/3, ymin = -0.4, ymax = -0.2, alpha = .2, fill = "red") +
     geom_density(aes(fill=factor(Feature)),alpha=0.2) +
-    annotate("text", x = 0.5, y = -0.3, label = "5'UTR") +
-    annotate("text", x = 1.5, y = -0.3, label = "CDS") +
-    annotate("text", x = 2.5, y = -0.3, label = "3'UTR")
+    annotate("text", x = 0.5/3, y = -0.3, label = "5'UTR") +
+    annotate("text", x = 1.5/3, y = -0.3, label = "CDS") +
+    annotate("text", x = 2.5/3, y = -0.3, label = "3'UTR")
   
   p2 <- ggplot(ct2, aes(x=pos, group=Feature, weight=count/sum(count))) + 
     ggtitle("Distribution on lncRNA") +
