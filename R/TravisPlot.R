@@ -62,7 +62,8 @@ TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFp
   
   
   # save(ct1,ct2,file="TravisPlot.RData")
-  p1 <- ggplot(ct1, aes(x=pos, group=Feature, weight=3*weight)) + 
+  suppressWarnings(
+    p1 <- ggplot(ct1, aes(x=pos, group=Feature, weight=3*weight)) + 
     ggtitle("Distribution on mRNA") +
     theme(axis.ticks = element_blank(), axis.text.x = element_blank()) + xlab("") + ylab("Frequency") +
     annotate("pointrange", x = 1, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
@@ -76,7 +77,9 @@ TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFp
     annotate("text", x = 0.5, y = -0.3, label = "5'UTR") +
     annotate("text", x = 1.5, y = -0.3, label = "CDS") +
     annotate("text", x = 2.5, y = -0.3, label = "3'UTR")
+  )
   
+  suppressWarnings(  
   p2 <- ggplot(ct2, aes(x=pos*3, group=Feature, weight=weight*3)) + 
     ggtitle("Distribution on lncRNA") +
     theme(axis.ticks = element_blank(), axis.text.x = element_blank()) + xlab("") + ylab("Frequency") +
@@ -87,6 +90,7 @@ TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFp
     annotate("text", x = 0.3, y = -0.3, label = "5'End") +
     annotate("text", x = 1.5, y = -0.3, label = "lncRNA") +
     annotate("text", x = 2.7, y = -0.3, label = "3'End") 
+  )
   
   if (is.na(saveToPDFprefix)) {
     # return the result
