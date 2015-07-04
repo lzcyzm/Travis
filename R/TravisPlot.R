@@ -77,21 +77,13 @@ TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFp
     annotate("text", x = 1.5, y = -0.3, label = "CDS") +
     annotate("text", x = 2.5, y = -0.3, label = "3'UTR")
   
-<<<<<<< HEAD
   p2 <- ggplot(ct2, aes(x=pos*3, group=Feature, weight=weight*3)) + 
-=======
-  p2 <- ggplot(ct2, aes(x=pos*3, group=Feature, weight=count/sum(count))) + 
->>>>>>> origin/master
     ggtitle("Distribution on lncRNA") +
     theme(axis.ticks = element_blank(), axis.text.x = element_blank()) + xlab("") + ylab("Frequency") +
     annotate("pointrange", x = 0, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
     annotate("pointrange", x = 3, y = -0.3, ymin = -0.5, ymax = -0.1, colour = "black",size=1) + 
     annotate("rect", xmin = 0, xmax = 3, ymin = -0.4, ymax = -0.2, alpha = .2, fill = "green") +
-<<<<<<< HEAD
     geom_density(aes(fill=factor(Feature)),alpha=0.5) +
-=======
-    geom_density(aes(fill=factor(Feature)),alpha=0.2) +
->>>>>>> origin/master
     annotate("text", x = 0.3, y = -0.3, label = "5'End") +
     annotate("text", x = 1.5, y = -0.3, label = "lncRNA") +
     annotate("text", x = 2.7, y = -0.3, label = "3'End") 
