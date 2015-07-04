@@ -92,20 +92,21 @@ TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFp
     annotate("text", x = 2.7, y = -0.3, label = "3'End") 
   )
   
-  if (is.na(saveToPDFprefix)) {
-    # return the result
-    q <- list(mRNA=p1,lncRNA=p2)
-    print("Figures returned as objects ...")
-    print("Please check ...")
-    return(q)
-  }  else {
-    f1 <- paste(saveToPDFprefix,"_mRNA.pdf",sep="")
-    f2 <- paste(saveToPDFprefix,"_lncRNA.pdf",sep="")
-    ggsave(filename=f1,plot=p1,width=6, height=4)
-    ggsave(filename=f2,plot=p2,width=6, height=4)
-    print(paste("Figures saved into",f1,"and",f2,"...", sep=" "))
-  }
-  
+  suppressWarnings( 
+    if (is.na(saveToPDFprefix)) {
+      # return the result
+      q <- list(mRNA=p1,lncRNA=p2)
+      print("Figures returned as objects ...")
+      print("Please check ...")
+      return(q)
+    }  else {
+      f1 <- paste(saveToPDFprefix,"_mRNA.pdf",sep="")
+      f2 <- paste(saveToPDFprefix,"_lncRNA.pdf",sep="")
+      ggsave(filename=f1,plot=p1,width=6, height=4)
+      ggsave(filename=f2,plot=p2,width=6, height=4)
+      print(paste("Figures saved into",f1,"and",f2,"...", sep=" "))
+    }
+  )
 }
 
 

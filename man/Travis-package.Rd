@@ -24,5 +24,5 @@ Maintainer: Jia Meng <jia.meng@xjtlu.edu.cn>
 ~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
 }
 \examples{
-1+1
+?TravisPlot
 }
