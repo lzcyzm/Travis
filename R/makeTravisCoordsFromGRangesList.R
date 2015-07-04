@@ -1,6 +1,7 @@
 
 
-makeTravisCoordsFromGRangesList <- function(comp, noBins) {
+makeTravisCoordsFromGRangesList <- function(comp, 
+                                            noBins=100) {
   
   # get all the check points
   tx_length <- as.numeric(sum(width(comp)))
