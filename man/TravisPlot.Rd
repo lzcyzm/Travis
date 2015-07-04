@@ -8,7 +8,7 @@ Plot the Transcriptomic View of Genomic Features with Travis Coordinates
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-TravisPlot(peak, TravisCoords = NA, txdb = NA, genome = NA, saveToPDFprefix = NA)
+TravisPlot(peak, TravisCoordsFromTxDb = NA, txdb = NA, genome = NA, saveToPDFprefix = NA)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -73,7 +73,27 @@ names(peak) <- c("H3K4me3", "m6A", "BAM1", "BAM2")
 
 # make TravisPlot
 # show the transcriptomic view of 4 sets of genomic features
-TravisPlot(peak, genome="mm10", saveToPDFprefix="toy")
+
+# OPTION 1
+TravisPlot(peak, 
+           genome="mm10", 
+           saveToPDFprefix = "Toy")
+# gene annotation will be downloaded automatically, 
+# andtwo PDF figures with prefix "Toy" will be saved in the current working directory
+
+# OPTION 2
+# It takes a few minutes to built TravisCoodinatesFromTxDb, it can be built separately and reuse
+txdb <- makeTxDbFromUCSC(genome="mm10")
+TravisCoordsFromTxDb <- makeTravisCoordsFromTxDb(txdb)
+TravisPlot(peak, 
+           TravisCoordsFromTxDb = TravisCoordsFromTxDb, 
+           saveToPDFprefix = "Toy2")
+
+# OPTION 3
+# the function can return the two figures which you may resize
+tp <- TravisPlot(peak, genome="mm10")
+tp[[1]] # Please ignore the warning message initiated by ggplot2
+tp[[2]] # Please ignore the warning message initiated by ggplot2
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
