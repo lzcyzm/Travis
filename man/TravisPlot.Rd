@@ -79,22 +79,28 @@ TravisPlot(peak,
            genome="mm10", 
            saveToPDFprefix = "Toy")
 # gene annotation will be downloaded automatically, 
-# andtwo PDF figures with prefix "Toy" will be saved in the current working directory
+# and two PDF figures with prefix "Toy" will be saved
+# in the current working directory
 
 # OPTION 2
-# It takes a few minutes to built TravisCoodinatesFromTxDb, it can be built separately and reuse
+# It takes a few minutes to built TravisCoodinatesFromTxDb,
+# so we may want to reuse it to save some time.
 txdb <- makeTxDbFromUCSC(genome="mm10")
 TravisCoordsFromTxDb <- makeTravisCoordsFromTxDb(txdb)
-TravisPlot(peak, 
+TravisPlot(peak[1:2], 
            TravisCoordsFromTxDb = TravisCoordsFromTxDb, 
            saveToPDFprefix = "Toy2")
+TravisPlot(peak[3:4], 
+           TravisCoordsFromTxDb = TravisCoordsFromTxDb, 
+           saveToPDFprefix = "Toy3")
 
 # OPTION 3
-# the function can return the two figures which you may resize
-tp <- TravisPlot(peak, genome="mm10")
-tp[[1]] # Please ignore the warning message initiated by ggplot2
-tp[[2]] # Please ignore the warning message initiated by ggplot2
-
+# The function may return the figures which you may resize
+tp <- TravisPlot(peak, TravisCoordsFromTxDb = TravisCoordsFromTxDb)
+tp[[1]] # Please ignore the warning message
+tp[[2]] # Please ignore the warning message
+tp[[1]] + ylim(-1,5) # reset the range of y axis
+tp[[2]] + ylim(-1,5) # reset the range of y axis
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

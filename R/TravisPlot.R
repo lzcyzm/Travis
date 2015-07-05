@@ -3,9 +3,11 @@
 TravisPlot <- function(peak,TravisCoordsFromTxDb=NA,txdb=NA,genome=NA,saveToPDFprefix=NA){
   
   # make sure the travis coordinates are available
-  if (is.na(TravisCoordsFromTxDb)&is.na(txdb)&is.na(genome)) {
-    stop("Most provide one of the three: TravisCoords, txdb or genome")
-  } 
+  suppressWarnings(
+    if (is.na(TravisCoordsFromTxDb)&is.na(txdb)&is.na(genome)) {
+      stop("Most provide one of the three: TravisCoords, txdb or genome")
+    } 
+  )
   
   if ( suppressWarnings(is.na(TravisCoordsFromTxDb)) ) {
     if (suppressWarnings(is.na(txdb))) {
